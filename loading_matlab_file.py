@@ -1,4 +1,4 @@
-'''
+''' RUN THIS FILE FIRST + ADD OWN PATHS!
 READ ME
     matlab_to_csv_map(filename)
     filtering_nan(lst)
@@ -41,13 +41,22 @@ import pandas as pd
 import os
 
 
-#Fill in your own paths here and run this file first!
-#Do this before running main.py!
+
+
+
+#Fill in your own paths here and run this file first! Do this before running main.py!
 
 #path to the matlab file:
 path_matlab_file1 = '/Users/nubia/Desktop/Thesis/Datasets/Database_time.mat'
+
+
+
 #path to where you want to store the new data structure (for example a desktop):
 path_csv_folder1 = '/Users/nubia/Desktop/final_thesis_testing'
+
+
+
+
 
 def filtering_nan(lst):
     start_index = None

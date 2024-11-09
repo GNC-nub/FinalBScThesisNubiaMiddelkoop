@@ -1,10 +1,13 @@
 '''
 READ ME
-    Class Mosquito(self, trial_num = False, track_num = False)
-
 DISCRIPTION
-    If you want to load the trial only put in the trial num, if you want a specific track_num.
-
+    This code uses 3 classes from the file ClassMosquito.py:
+        Track (to load single tracks), Trials (to load single trials) and Dataset (to load the whole dataset).
+PARAMETERS
+    The class Dataset does not take any parameters
+    The class Trial takes only one integer as an input: The trial nuber
+    The class Track takes two integers parameters: the trial number and the track number
+        Some tracks don't exist in this dataset,then an error message arises.
 '''
 import numpy as np
 

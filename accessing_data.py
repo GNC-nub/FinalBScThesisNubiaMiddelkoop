@@ -2,7 +2,7 @@
 READ ME
     accessing_track(trial, track)
     accessing_trial(trial)
-    accessing_extra_info(info_field, filename = '/Users/nubia/Desktop/Thesis/Datasets/Database_time.mat')
+    accessing_extra_info(info_field)
 
 DESCRIOPTION
     accessing_track(trial, track) gives the data of a single track of a given trial.

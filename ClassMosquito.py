@@ -767,7 +767,6 @@ class Dataset:
                     z_list.append(z)
         return r_list, z_list
 
-
 # resting time
     def getAvarageRestingTime(self):
         if self.trialobjects == None:
@@ -822,6 +821,22 @@ class Dataset:
             for point in resting_time_trial:
                     resting_time_list.append(point)
         return len(resting_time_list)
+
+    def countLandingPoints(self):
+        if self.trialobjects == None:
+            self.trialobjects = self.getTrialObjects()
+        landing_points = 0
+        for trial_object in self.trialobjects:
+            landing_points += trial_object.countLandingsTrial()
+        return landing_points
+
+    def countCapturingPoints(self):
+        if self.trialobjects == None:
+            self.trialobjects = self.getTrialObjects()
+        capturing_points = 0
+        for trial_object in self.trialobjects:
+            capturing_points += trial_object.countSimulatedCatchesTrial()
+        return capturing_points
     def getLastCoordinatesDataset(self):
         if self.coordinate_list_dataset == None:
             self.initializeCoordinateList()

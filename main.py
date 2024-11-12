@@ -22,10 +22,10 @@ if __name__ == '__main__':
 
 
 import ClassMosquito
-from landing_capturing_area import landing_subset
+
+
 #run loading_matlab_file.py first!
     #Put in your own paths to the matlab file and the place to store the data!
-
 
 dataset = ClassMosquito.Dataset()
 trial = ClassMosquito.Trial(1)
@@ -33,10 +33,13 @@ track = ClassMosquito.Track(1, 2)
 
 
 #Basic dataset analysis
-landing, capturing, total_tracks = landing_subset()
+
+landing_count = dataset.countLandingPoints()
+capturing_count = dataset.countCapturingPoints()
+total_tracks = sum(dataset.getNumTracksPerTrial())
 print(f'Total tracks = {total_tracks}')
-print(f'In the whole dataset {landing} mosquitos are landing. ({round(landing/total_tracks*100, 2)} % of the tracks end in landing)')
-print(f'From this testing: In the whole dataset {capturing} mosquitos are captured. ({round(capturing/total_tracks*100, 2)} % of the tracks end in capture)')
+print(f'In the whole dataset {landing_count} mosquitos are landing. ({round(landing_count/total_tracks*100, 2)} % of the tracks end in landing)')
+print(f'From this testing: In the whole dataset {capturing_count} mosquitos are captured. ({round(capturing_count/total_tracks*100, 2)} % of the tracks end in capture)')
 print(f'From the capture rate of the article: In the whole dataset 1335 mosquitos are captured. ({round(1335/total_tracks*100, 2)} % of the tracks end in capture)')
 
 
@@ -115,3 +118,4 @@ percentage_land_again = dataset.calculatingPercentagesLandingAgain()
 percentage_land_to_capture = dataset.calculatingPercentagesLandingToCapture()
 
 print(f'Percentage of take offs that land again is {percentage_land_again}\nPercentage of take offs that lead to capture {percentage_land_to_capture}')
+

@@ -33,7 +33,7 @@ Add your own directory of the matlab file and the directory of where to store th
         When running this file csv files are made for every track and stored in this directory:
         '.../database_csv/Trial_{trial_number}/Trial_{trial_number}_Track_{track_number}.csv'
 
-## running main.py and nan_testing.py 
+## Running main.py and nan_testing.py 
 After loading the dataset and setting the right path's to the right directorys the code can be run. 
 
 For generating the percentage of nan data in the original code run: nan_testing.py (in the saved csv strucutre most are deleted)

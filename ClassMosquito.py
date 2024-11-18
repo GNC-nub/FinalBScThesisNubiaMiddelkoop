@@ -724,6 +724,17 @@ class Dataset:
             num_tracks_per_trial.append(trial_object.getNumTracks())
         return num_tracks_per_trial
 
+    def getAvarageLengthTracks(self):
+        if self.trialobjects == None:
+            self.trialobjects = self.getTrialObjects()
+        times = []
+        for trial_object in self.trialobjects:
+            trial_object.initiateCoordinateList()
+            for track in trial_object.coordinate_list_trial:
+                header, x, y, z, time = track
+                length = time[-1] - time[0]
+                times.append(length)
+        return np.average(times)
 
 # landing/take_off points
     def getlandingPointsTheta(self):
@@ -776,8 +787,9 @@ class Dataset:
             resting_time_trial = trial_object.getRestingTimeTrial()
             for point in resting_time_trial:
                 resting_time_list.append(point)
-        average = sum(resting_time_list)/len(resting_time_list)
-        return average
+        mean = sum(resting_time_list)/len(resting_time_list)
+        std = np.std(resting_time_list)
+        return f'{mean}' + u"\u00B1" + f'{std}'
 
     def getMedianRestingTime(self):
         if self.trialobjects == None:
@@ -788,7 +800,9 @@ class Dataset:
             for point in resting_time_trial:
                 resting_time_list.append(point)
         resting_time_median = median(resting_time_list)
-        return resting_time_median
+        first_quartile = np.quantile(resting_time_list, 0.25)
+        third_quartile = np.quantile(resting_time_list, 0.75)
+        return first_quartile, resting_time_median, third_quartile
 
     def getLongestRestingTime(self):
         if self.trialobjects == None:

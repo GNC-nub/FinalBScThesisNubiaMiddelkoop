@@ -41,12 +41,11 @@ print(f'Total tracks = {total_tracks}')
 print(f'In the whole dataset {landing_count} mosquitos are landing. ({round(landing_count/total_tracks*100, 2)} % of the tracks end in landing)')
 print(f'From this testing: In the whole dataset {capturing_count} mosquitos are captured. ({round(capturing_count/total_tracks*100, 2)} % of the tracks end in capture)')
 print(f'From the capture rate of the article: In the whole dataset 1335 mosquitos are captured. ({round(1335/total_tracks*100, 2)} % of the tracks end in capture)')
-
+print(f' The average duration all the tracks is {round(dataset.getAvarageLengthTracks(), 2)} seconds.')
 
 #General dataset analysis
 dataset.testNormalDistribution(dataset.getNumTracksPerTrial())
 print(dataset.testConfidenceInterval(dataset.getNumTracksPerTrial()))
-
 
 #Durations
 dataset.plotDuration()
@@ -69,8 +68,10 @@ dataset.plotBoxplotCatchesVsLandings()
 
 #Resting time
 print(f'Average resting time of the whole dataset = {dataset.getAvarageRestingTime()}')
-print(f'The median resting time of the whole dataset = {dataset.getMedianRestingTime()}')
-print(f'The longest resting time of the whoe dataset is = {dataset.getLongestRestingTime()}')
+print(f'The median resting time of the whole dataset = {dataset.getMedianRestingTime()[1]}')
+print(f'With the first quarter being  = {dataset.getMedianRestingTime()[0]} and the third being {dataset.getMedianRestingTime()[2]}.')
+
+print(f'The longest resting time of the whole dataset is = {dataset.getLongestRestingTime()}')
 
 
 dataset.plotHistogramRestingTime()

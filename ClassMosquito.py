@@ -736,6 +736,7 @@ class Dataset:
                 times.append(length)
         return np.average(times)
 
+
 # landing/take_off points
     def getlandingPointsTheta(self):
         if self.trialobjects == None:
@@ -778,27 +779,30 @@ class Dataset:
                     z_list.append(z)
         return r_list, z_list
 
+
 # resting time
-    def getAvarageRestingTime(self):
+    def getAvarageRestingTime(self, lower_boundary = 0):
         if self.trialobjects == None:
             self.trialobjects = self.getTrialObjects()
         resting_time_list = []
         for trial_object in self.trialobjects:
             resting_time_trial = trial_object.getRestingTimeTrial()
             for point in resting_time_trial:
-                resting_time_list.append(point)
+                if point > lower_boundary:
+                    resting_time_list.append(point)
         mean = sum(resting_time_list)/len(resting_time_list)
         std = np.std(resting_time_list)
         return f'{mean}' + u"\u00B1" + f'{std}'
 
-    def getMedianRestingTime(self):
+    def getMedianRestingTime(self, lower_boundary = 0):
         if self.trialobjects == None:
             self.trialobjects = self.getTrialObjects()
         resting_time_list = []
         for trial_object in self.trialobjects:
             resting_time_trial = trial_object.getRestingTimeTrial()
             for point in resting_time_trial:
-                resting_time_list.append(point)
+                if point > lower_boundary:
+                    resting_time_list.append(point)
         resting_time_median = median(resting_time_list)
         first_quartile = np.quantile(resting_time_list, 0.25)
         third_quartile = np.quantile(resting_time_list, 0.75)

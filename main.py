@@ -18,7 +18,7 @@ PARAMETERS
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print('Antoine, this is main!\n Run this script AFTER loading the data into the correct folders/directory with the loading_matlab_file.py.')
+    print('Antoine, this is main!\n Run this script AFTER loading the data into the correct folders/directory with the loading_matlab_file.py.\n')
 
 
 import ClassMosquito
@@ -30,18 +30,17 @@ import ClassMosquito
 dataset = ClassMosquito.Dataset()
 trial = ClassMosquito.Trial(1)
 track = ClassMosquito.Track(1, 2)
-
+'''
 
 #Basic dataset analysis
-
 landing_count = dataset.countLandingPoints()
 capturing_count = dataset.countCapturingPoints()
 total_tracks = sum(dataset.getNumTracksPerTrial())
-print(f'Total tracks = {total_tracks}')
+print(f'Total tracks = {total_tracks}.')
 print(f'In the whole dataset {landing_count} mosquitos are landing. ({round(landing_count/total_tracks*100, 2)} % of the tracks end in landing)')
 print(f'From this testing: In the whole dataset {capturing_count} mosquitos are captured. ({round(capturing_count/total_tracks*100, 2)} % of the tracks end in capture)')
 print(f'From the capture rate of the article: In the whole dataset 1335 mosquitos are captured. ({round(1335/total_tracks*100, 2)} % of the tracks end in capture)')
-print(f' The average duration all the tracks is {round(dataset.getAvarageLengthTracks(), 2)} seconds.')
+print(f' The average duration all the tracks is {round(dataset.getAvarageLengthTracks(), 2)} seconds.\n')
 
 #General dataset analysis
 dataset.testNormalDistribution(dataset.getNumTracksPerTrial())
@@ -64,15 +63,21 @@ dataset.plotBoxplotCatchesConditions()
 dataset.plotBoxplotLandingCondition()
 dataset.plotBoxplotCatchesVsLandings()
 
+'''
 
-
-#Resting time
-print(f'Average resting time of the whole dataset = {dataset.getAvarageRestingTime()}')
+#Resting time statistics
+print(f'\nAverage resting time of the whole dataset = {dataset.getAvarageRestingTime()}')
 print(f'The median resting time of the whole dataset = {dataset.getMedianRestingTime()[1]}')
 print(f'With the first quarter being  = {dataset.getMedianRestingTime()[0]} and the third being {dataset.getMedianRestingTime()[2]}.')
 
 print(f'The longest resting time of the whole dataset is = {dataset.getLongestRestingTime()}')
 
+#resting time statistics only above 0.5 seconds
+print('\n Excluding all the resting times below 0.5 gives the following average and median: ')
+print(f'Average resting time (above 0.5 s resting times) = {dataset.getAvarageRestingTime(0.5)}')
+print(f'The median resting time (above 0.5 s resting times) = {dataset.getMedianRestingTime(0.5)[1]}')
+print(f'With the first quarter being  = {dataset.getMedianRestingTime(0.5)[0]} and the third being {dataset.getMedianRestingTime(0.5)[2]}.\n')
+quit()
 
 dataset.plotHistogramRestingTime()
 dataset.plotHistogramRestingTimeZoomedIn(0, 30)

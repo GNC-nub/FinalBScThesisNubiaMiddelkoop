@@ -1022,7 +1022,6 @@ class Dataset:
         plt.show()
 
 
-
     def plotHistogramRestingTime(self):
         if self.trialobjects == None:
             self.trialobjects = self.getTrialObjects()
